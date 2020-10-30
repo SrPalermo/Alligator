@@ -1,19 +1,25 @@
+<%-- 
+    Document   : editar
+    Created on : Oct 30, 2020, 1:31:02 AM
+    Author     : arodas
+--%>
 
+<%@page import="models.Marca"%>
+<%@page import="modelsDao.MarcaDao"%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
-
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>Home</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Marcas</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 
+        
     </head>
-    
     <body>
         
-        <!-- inicia el navbar -->
+      <!-- inicia el navbar -->
         
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <a class="navbar-brand" href="#">Alligator</a>
@@ -58,6 +64,36 @@
         </nav>
 
         <!-- Finaliza el navbar -->
+
+        <br/>
+
+        <div>
+
+        
+                <div class="container">
+                    
+                    <%
+                        MarcaDao dao = new MarcaDao();
+                        int MarcaID = Integer.parseInt((String)request.getAttribute("MarcaID"));
+                        Marca marca = (Marca)dao.list(MarcaID);
+                    %>
+                    
+                    <h1>Editar Marca</h1>
+                    <br/>
+                    <form class="form-signin" widht="" heigth="" action="MarcaController">
+                        <h5>Descripcion</h5>
+                        <input name="xId" type="hidden" value="<%= marca.getMarcaID()%>">
+                        <input name="xDescripcion" type="text"  class="form-control" placeholder="Ingrese una Descripcion" required="" autofocus="" value="<%= marca.getDescripcion() %>"> <br/>
+                       
+                        <br/>
+                        <br/>
+                        <br/>
+                        <button class="btn btn-lg btn-primary btn-block" name="accion" type="submit" value="actualizar" >Guardar</button>
+                        <a type="button" class="btn btn-lg btn-danger btn-block" href="MarcaController?accion=listar">Cancelar</a>
+                    </form>
+                </div>
+            
+        </div>
         
         <!-- JS here -->
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

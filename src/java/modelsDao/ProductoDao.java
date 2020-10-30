@@ -21,26 +21,26 @@ public class ProductoDao implements CrudProducto{
     Connection con;
     PreparedStatement ps;
     ResultSet rs;
-    Producto u = new Producto();
+    Producto producto = new Producto();
 
     @Override
     public List listar() {
         ArrayList<Producto>list=new ArrayList<>();
-        String comando = "Select *from Usuarios";
+        String comando = "Select *from Productos";
         try{
             con=cxn.getConnection();
             ps=con.prepareStatement(comando);
             rs=ps.executeQuery();
             while(rs.next()){
-                Producto u = new Producto();
-                u.setProductosID(rs.getInt("UsuarioID"));
-                u.setDescripcion(rs.getString("Descripcion"));
-                u.setMarcaID(rs.getInt("MarcaID"));
-                u.setEstado(rs.getString("Estado"));
+                Producto producto = new Producto();
+                producto.setProductoID(rs.getInt("ProductoID"));
+                producto.setDescripcion(rs.getString("Descripcion"));
+                producto.setMarcaID(rs.getInt("MarcaID"));
+                producto.setEstado(rs.getString("Estado"));
                 /*u.setContrasea(rs.getString("Contrasea"));
                 u.setEmail(rs.getString("Email"));
                 u.setEstado(rs.getString("Estado"));*/
-                list.add(u);
+                list.add(producto);
             }
             
         }catch(Exception error){
@@ -51,21 +51,59 @@ public class ProductoDao implements CrudProducto{
 
     @Override
     public Producto list(int ProductoID) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ArrayList<Producto>list=new ArrayList<>();
+        String comando = "Select *from Productos where ProductoID = " + ProductoID;
+        try{
+            con=cxn.getConnection();
+            ps=con.prepareStatement(comando);
+            rs=ps.executeQuery();
+            while(rs.next()){
+                producto.setProductoID(rs.getInt("ProductoID"));
+                producto.setDescripcion(rs.getString("Descripcion"));
+                producto.setMarcaID(rs.getInt("MarcaID"));
+                producto.setEstado(rs.getString("Estado"));
+            } 
+        }catch(Exception error){
+            
+        }
+        return producto;
     }
 
     @Override
     public boolean add(Producto producto) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String comando = "CALL SpProductosInsert ('" + producto.getDescripcion() + "'," + producto.getMarcaID()+ ");";
+        try{
+            con = cxn.getConnection();
+            ps = con.prepareStatement(comando);
+            ps.executeQuery();
+        }catch(Exception error){
+            
+        }
+        return false;
     }
 
     @Override
     public boolean edit(Producto producto) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+        String comando = "CALL SpProductosEdit (" + producto.getProductoID()+ ",'" + producto.getDescripcion() + "'," + producto.getMarcaID()+ ");";
+        try{
+            con = cxn.getConnection();
+            ps = con.prepareStatement(comando);
+            ps.executeQuery();
+        }catch(Exception error){
+            
+        }
+        return false;}
 
     @Override
     public boolean delete(int ProductoID) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String comando = "delete from Productos where ProductoID =" + ProductoID;
+        try{
+            con = cxn.getConnection();
+            ps = con.prepareStatement(comando);
+            ps.executeUpdate();
+        }catch(Exception error){
+            
+        }
+        return false;
     }
 }

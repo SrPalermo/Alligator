@@ -10,7 +10,7 @@ package models;
  * @author Cesar
  */
 public class Producto {
-    int ProductosID;
+    int ProductoID;
     String Descripcion;
     int MarcaID;
     String Estado;
@@ -18,19 +18,19 @@ public class Producto {
     public Producto() {
     }
 
-    public Producto(int ProductosID, String Descripcion, int MarcaID, String Estado) {
-        this.ProductosID = ProductosID;
+    public Producto(int ProductoID, String Descripcion, int MarcaID, String Estado) {
+        this.ProductoID = ProductoID;
         this.Descripcion = Descripcion;
         this.MarcaID = MarcaID;
         this.Estado = Estado;
     }
 
-    public int getProductosID() {
-        return ProductosID;
+    public int getProductoID() {
+        return ProductoID;
     }
 
-    public void setProductosID(int ProductosID) {
-        this.ProductosID = ProductosID;
+    public void setProductoID(int ProductosID) {
+        this.ProductoID = ProductosID;
     }
 
     public String getDescripcion() {
