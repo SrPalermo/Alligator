@@ -9,15 +9,8 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-        
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Roles</title>
+        <title>Asginacion de Roles</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-
     </head>
     <body>
         <!-- inicia el navbar -->
@@ -57,33 +50,39 @@
 
         <br/>
 
-        <div>
-
         
-                <div class="container">
-                    
-                    <%
-                        RolDao dao = new RolDao();
-                        int RolID = Integer.parseInt((String)request.getAttribute("RolID"));
-                        Rol rol = (Rol)dao.list(RolID);
-                    %>
-                    
-                    <h1>Editar Rol</h1>
-                    <br/>
-                    <form class="form-signin" widht="" heigth="" action="RolesController">
-                        <h5>Descripcion</h5>
-                        <input name="xId" type="hidden" value="<%= rol.getRolID()%>">
-                        <input name="xDescripcion" type="text"  class="form-control" placeholder="Ingrese una Descripcion" required="" autofocus="" value="<%= rol.getDescripcion() %>"> <br/>
-                       
-                        <br/>
-                        <br/>
-                        <br/>
-                        <button class="btn btn-lg btn-primary btn-block" name="accion" type="submit" value="actualizar" >Guardar</button>
-                        <a type="button" class="btn btn-lg btn-danger btn-block" href="RolesController?accion=listar">Cancelar</a>
-                    </form>
+            <div class="d-flex">
+                <div class="col-sm-5">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label>Datos del Usuario</label>
+                            </div>
+                            <div class="form-group d-flex">
+                                <div class="col-sm-6 ">
+                                    <input type="text" name="xid" class="from-control" placeholder="Codigo">
+                                    <input type="submit" name="accion" value="Buscar" class="btn btn-outline-info">
+                                </div>
+                                <div class="col-sm-6">
+                                    <input type="text" name="nombreusuario" class="from-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Datos del Rol</label>
+                            </div>
+                            
+                            <div class="form-group"></div>
+                            <div class="form-group">
+                                <input type="submit" name="accion" value="Agregar" class="btn btn-outline-info">
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            
-        </div>
+                <div class="col-sm-7">
+
+                </div>
+            </div>
+        
         
         <!-- JS here -->
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

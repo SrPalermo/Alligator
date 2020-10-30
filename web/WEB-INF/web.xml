@@ -8,6 +8,10 @@
         <servlet-name>ProveedorController</servlet-name>
         <servlet-class>controllers.ProveedorController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UsuarioRolController</servlet-name>
+        <servlet-class>controllers.UsuarioRolController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>UsuarioController</servlet-name>
         <url-pattern>/UsuarioController</url-pattern>
@@ -15,6 +19,10 @@
     <servlet-mapping>
         <servlet-name>ProveedorController</servlet-name>
         <url-pattern>/ProveedorController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UsuarioRolController</servlet-name>
+        <url-pattern>/UsuarioRolController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

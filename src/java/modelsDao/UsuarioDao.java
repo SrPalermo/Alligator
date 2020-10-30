@@ -27,6 +27,27 @@ public class UsuarioDao implements Crud{
     ResultSet rs;
     Usuario u = new Usuario();
     
+    public Usuario buscar(String iduser){
+        String sql="SELECT *FROM usuarios WHERE UsuarioID="+iduser;
+        try {
+            con=cxn.getConnection();
+            ps=con.prepareStatement(sql);
+            rs=ps.executeQuery();
+            while(rs.next()){
+                Usuario u = new Usuario();
+                u.setUsuarioID(rs.getInt("UsuarioID"));
+                u.setNombre(rs.getString("Nombre"));
+                u.setApellido(rs.getString("Apellido"));
+                u.setUsuario(rs.getString("Usuario"));
+                u.setContrasea(rs.getString("Contrasea"));
+                u.setEmail(rs.getString("Email"));
+                u.setEstado(rs.getString("Estado"));
+            }
+        } catch (Exception e) {
+        }
+        return u;
+    }
+    
     @Override
     public List listar() {
         ArrayList<Usuario>list=new ArrayList<>();
