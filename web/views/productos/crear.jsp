@@ -90,7 +90,7 @@
                     <div class="form-group">
                         <label class="control-label col-sm-2">Marca</label>
                         <div class="col-sm-10">
-                            <select name="xMarcaID" class="form-control">
+                            <select name="xMarcaID" class="form-control"  >
 
                                 <%
                                     MarcaDao marcas = new MarcaDao();

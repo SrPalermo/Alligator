@@ -84,7 +84,7 @@ public class ProductoDao implements CrudProducto{
 
     @Override
     public boolean edit(Producto producto) {
-        String comando = "CALL SpProductosEdit (" + producto.getProductoID()+ ",'" + producto.getDescripcion() + "'," + producto.getMarcaID()+ ");";
+        String comando = "CALL SpProductosEdit (" + producto.getProductoID() + ",'" + producto.getDescripcion() + "'," + producto.getMarcaID()+ ");";
         try{
             con = cxn.getConnection();
             ps = con.prepareStatement(comando);
