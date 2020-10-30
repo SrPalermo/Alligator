@@ -7,7 +7,7 @@ package interfaces;
 import java.util.List;
 import models.OrdenVenta;
 /**
- *
+ *****
  * @author arodas
  */
 public interface CrudOrdenVenta {
