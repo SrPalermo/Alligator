@@ -65,7 +65,7 @@
                 <br/>
                 <form class="form-horizontal" widht="" heigth="" action="TiendaController">
                     <div class="form-group">
-                        <label class="control-label col-sm-2">Nombres</label>
+                        <label class="control-label col-sm-2">Nombre</label>
                         <div class="col-sm-10">
                             <input name="xNombre" type="text"  class="form-control" placeholder="Ingrese un Nombre" required="" autofocus="">
                         </div>
@@ -79,7 +79,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="control-label col-sm-2">Nombre de Usuario</label>
+                        <label class="control-label col-sm-2">Porcentaje de Ganancia</label>
                         <div class="col-sm-10">
                             <input name="xPorcentajeGanancia" type="text"  class="form-control" placeholder="Ingrese un Porcentaje" required="" autofocus="">
                         </div>
