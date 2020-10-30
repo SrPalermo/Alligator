@@ -13,7 +13,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Clientes</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 
@@ -66,7 +66,7 @@
         <div style="border: 1pt;" class="container-fluid">
             <h1>Clientes</h1>
             <br/>
-            <a type="button" class="btn btn-primary" href="TiendaController?accion=crear">Nueva Tienda</a>
+            <a type="button" class="btn btn-primary" href="ClienteController?accion=crear">Nuevo Cliente</a>
             <hr/>
         </div>
 
@@ -106,8 +106,8 @@
                         <td><%= cliente.getNit() %></td>
                         <td><%= cliente.getEstado() %></td>
                         <td>
-                            <a type="button" class="btn btn-info" href="ClienteController?accion=editar&TiendaID=<%= cliente.getClienteID() %>">Editar</a>
-                            <a type="button" class="btn btn-danger" href="ClienteController?accion=eliminar&TiendaID=<%= cliente.getClienteID() %>">Eliminar</a>
+                            <a type="button" class="btn btn-info" href="ClienteController?accion=editar&ClienteID=<%= cliente.getClienteID() %>">Editar</a>
+                            <a type="button" class="btn btn-danger" href="ClienteController?accion=eliminar&ClienteID=<%= cliente.getClienteID() %>">Eliminar</a>
                         </td>
                     </tr>
                 </tbody>

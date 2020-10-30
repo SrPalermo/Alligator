@@ -76,9 +76,48 @@ String list = "views/clientes/ver.jsp";
             access=list;
         }else if(action.equalsIgnoreCase("crear")){
             access=add;
+        }else if(action.equalsIgnoreCase("guardar")){
+            String Nombre = request.getParameter("xNombre");
+            String Apellido = request.getParameter("xApellido");
+            String Email = request.getParameter("xEmail");
+            String Direccion = request.getParameter("xDireccion");
+            String Nit = request.getParameter("xNit");
+            cliente.setNombre(Nombre);
+            cliente.setApellido(Apellido);
+            cliente.setEmail(Email);
+            cliente.setDireccion(Direccion);
+            cliente.setNit(Integer.parseInt(Nit));
+            dao.add(cliente);    
+            access=list;
+        }else if(action.equalsIgnoreCase("editar")){
+            request.setAttribute("ClienteID",request.getParameter("ClienteID"));
+            access=edit;
+        }else if(action.equalsIgnoreCase("actualizar")){
+            Id = Integer.parseInt(request.getParameter("xId"));
+            String Nombre = request.getParameter("xNombre");
+            String Apellido = request.getParameter("xApellido");
+            String Email = request.getParameter("xEmail");
+            String Direccion = request.getParameter("xDireccion");
+            String Nit = request.getParameter("xNit");
+            cliente.setClienteID(Id);
+            cliente.setNombre(Nombre);
+            cliente.setApellido(Apellido);
+            cliente.setEmail(Email);
+            cliente.setDireccion(Direccion);
+            cliente.setNit(Integer.parseInt(Nit));
+            dao.edit(cliente);
+            access=list;
+        }else if(action.equalsIgnoreCase("eliminar")){
+            Id = Integer.parseInt(request.getParameter("ClienteID"));
+            cliente.setClienteID(Id);
+            dao.delete(Id);
+            access=list;
         }
+                
         RequestDispatcher vista = request.getRequestDispatcher(access);
         vista.forward(request, response);
+        
+        processRequest(request, response);
     }
 
     /**

@@ -56,11 +56,11 @@
 
 
             <div class="container">
-                <h1>Nuevo Usuario</h1>
+                <h1>Nuevo Rol</h1>
                 <br/>
                 <form class="form-horizontal" widht="" heigth="" action="RolesController">
                     <div class="form-group">
-                        <label class="control-label col-sm-2">Nombres</label>
+                        <label class="control-label col-sm-2">Descripcion</label>
                         <div class="col-sm-10">
                             <input name="xDescripcion" type="text"  class="form-control" placeholder="Ingrese una Decripcion" required="" autofocus="">
                         </div>

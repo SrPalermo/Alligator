@@ -8,10 +8,114 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Clientes</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
     </head>
     <body>
-        <h1>Hello World!</h1>
+        
+                <!-- inicia el navbar -->
+        
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">Alligator</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="TiendaController?accion=listar">Tiendas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="ClienteController?accion=listar">Clientes</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Configuración
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                &nbsp;&nbsp;&nbsp;&nbsp; Sesiones
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="UsuarioController?accion=listar">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Usuarios</a>
+                                <a class="dropdown-item" href="RolesController?accion=listar">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Roles</a>
+                                <a class="dropdown-item" href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Asignación de Usuarios</a>
+                            </div>    
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- Finaliza el navbar -->
+        
+         <div class="container">
+                <h1>Nuevo Cliente</h1>
+                <br/>
+                <form class="form-horizontal" widht="" heigth="" action="ClienteController">
+                    <div class="form-group">
+                        <label class="control-label col-sm-2">Nombres</label>
+                        <div class="col-sm-10">
+                            <input name="xNombre" type="text"  class="form-control" placeholder="Ingrese un Nombre" required="" autofocus="">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-sm-2">Apellidos</label>
+                        <div class="col-sm-10">
+                            <input name="xApellido" type="text" class="form-control" placeholder="Ingrese un Apellido" required="" autofocus="">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-sm-2">Direccion</label>
+                        <div class="col-sm-10">
+                            <input name="xDireccion" type="text"  class="form-control" placeholder="Ingrese una Direccion" required="" autofocus="">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-sm-2">Email</label>
+                        <div class="col-sm-10">
+                            <input name="xEmail" type="Email"  class="form-control" placeholder="Ingrese unCorreo" required="" autofocus="">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-sm-2">Nit</label>
+                        <div class="col-sm-10">
+                            <input name="xNit" type="number" class="form-control" placeholder="Ingrese un Nit" required="">
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <button class="btn btn-lg btn-primary btn-block" name="accion" type="submit" value="guardar" >Guardar</button> 
+                                    </td>
+                                    <td>
+                                        <a type="button" class="btn btn-lg btn-danger btn-block" href="ClienteController?accion=listar">Cancelar</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+
+                </form>
+            </div>
+
+        </div>
+        
+        
+        
     </body>
 </html>
