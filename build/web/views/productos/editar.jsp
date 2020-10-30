@@ -3,6 +3,12 @@
     Created on : Oct 30, 2020, 12:25:39 AM
     Author     : arodas
 --%>
+<%@page import="java.util.Iterator"%>
+<%@page import="java.util.List"%>
+<%@page import="models.Producto"%>
+<%@page import="modelsDao.ProductoDao"%>
+<%@page import="models.Marca"%>
+<%@page import="modelsDao.MarcaDao"%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -63,6 +69,56 @@
         </nav>
 
         <!-- Finaliza el navbar -->
+        
+        
+        <br/>
+
+        <div>
+
+                <div class="container">
+                    
+                    <%
+                        ProductoDao dao = new ProductoDao();
+                        int ProductoID = Integer.parseInt((String)request.getAttribute("ProductoID"));
+                        Producto producto = (Producto)dao.list(ProductoID);
+                    %>
+                    
+                    <h1>Editar Producto</h1>
+                    <br/>
+                    <form class="form-signin" widht="" heigth="" action="ProductoController">
+                        <h5>Descripcion</h5>
+                        <input name="xId" type="hidden" value="<%= producto.getProductoID()%>">
+                        <input name="xDescripcion" type="text"  class="form-control" placeholder="Ingrese una Descripcion" required="" autofocus="" value="<%= producto.getDescripcion() %>"> <br/>
+                       
+                        
+                                               
+                        <select name="xMarcaID" class="form-control" >
+
+                                <%
+                                    MarcaDao marcas = new MarcaDao();
+                                    List<Marca> list = marcas.listar();
+                                    Iterator<Marca> iter = list.iterator();
+                                    Marca marca = null;
+                                    while (iter.hasNext()) {
+                                        marca = iter.next();
+                                %>
+
+                                <option value="<%= marca.getMarcaID()%>"><%= marca.getDescripcion()%> </option>
+
+                                <%}%>
+
+                        </select>
+                        
+                        
+                        <br/>
+                        <br/>
+                        <br/>
+                        <button class="btn btn-lg btn-primary btn-block" name="accion" type="submit" value="actualizar" >Guardar</button>
+                        <a type="button" class="btn btn-lg btn-danger btn-block" href="ProductoController?accion=listar">Cancelar</a>
+                    </form>
+                </div>
+            
+        </div>
         
         
           <!-- JS here -->

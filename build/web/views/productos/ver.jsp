@@ -110,7 +110,7 @@
                         <td><%= producto.getMarcaID()%></td>
                         <td><%= producto.getEstado() %></td>
                         <td>
-                            <a type="button" class="btn btn-info" href="ProductoController?accion=editar&ProductoID=<%= producto.getProductoID() %>">Editar</a>
+                            <a type="button" class="btn btn-info" href="ProductoController?accion=editar&ProductoID=<%= producto.getProductoID() %>&MarcaID=<%= producto.getMarcaID() %>">Editar</a>
                             <a type="button" class="btn btn-danger" href="TiendaController?accion=eliminar&ProductoID=<%= producto.getProductoID() %>">Eliminar</a>
                         </td>
                     </tr>

@@ -74,14 +74,15 @@ public class ProductoController extends HttpServlet {
             access=list;
         }else if(action.equalsIgnoreCase("editar")){
             request.setAttribute("ProductoID",request.getParameter("ProductoID"));
+            request.setAttribute("MarcaID",request.getParameter("MarcaID"));
             access=edit;
         }else if(action.equalsIgnoreCase("actualizar")){
             Id = Integer.parseInt(request.getParameter("xId"));
             String Descripcion = request.getParameter("xDescripcion");
-            String MarcaID = request.getParameter("xMarcaID");
+            int MarcaID = Integer.parseInt(request.getParameter("xMarcaID"));
             producto.setProductoID(Id);
             producto.setDescripcion(Descripcion);
-            producto.setMarcaID(Integer.getInteger(MarcaID));      
+            producto.setMarcaID(MarcaID);      
             dao.edit(producto);
             access=list;
         }else if(action.equalsIgnoreCase("eliminar")){
