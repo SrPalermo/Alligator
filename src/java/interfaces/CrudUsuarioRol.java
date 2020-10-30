@@ -14,7 +14,8 @@ import models.UsuarioRol;
  */
 public interface CrudUsuarioRol {
     public List listar();
-    public UsuarioRol list(int TiendaID);
+    public UsuarioRol list(int TiendaID,int UsuarioID,int RolID);
     public boolean add(UsuarioRol tienda);
     public boolean edit(UsuarioRol tienda);
+    public boolean delete(int TiendaID,int UsuarioID,int RolID);
 }

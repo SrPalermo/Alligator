@@ -18,25 +18,90 @@ import models.UsuarioRol;
  * @author lgomez
  */
 public class UsuarioRolDao implements CrudUsuarioRol{
-
+    Conexion cxn = new Conexion();
+    Connection con;
+    PreparedStatement ps;
+    ResultSet rs;
+    UsuarioRol us = new UsuarioRol();
+    
     @Override
     public List listar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ArrayList<UsuarioRol>list=new ArrayList<>();
+        String comando = "SELECT *FROM proveedores";
+        try{
+            con=cxn.getConnection();
+            ps=con.prepareStatement(comando);
+            rs=ps.executeQuery();
+            while(rs.next()){
+                UsuarioRol u = new UsuarioRol();
+                u.setUsuarioID(rs.getInt("UsuarioID"));
+                u.setRolID(rs.getInt("RolID"));
+                u.setTiendaID(rs.getInt("TiendaID"));
+                list.add(u);
+            }
+            
+        }catch(Exception error){
+            
+        }
+        return list;
     }
 
     @Override
-    public UsuarioRol list(int TiendaID) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public UsuarioRol list(int TiendaID,int UsuarioID,int RolID) {
+        ArrayList<UsuarioRol>list=new ArrayList<>();
+        String comando = "SELECT *FROM USUARIOSROLES WHERE UsuarioID="+UsuarioID+" AND RolID="+RolID+" AND TiendaID="+TiendaID;
+        try{
+            con=cxn.getConnection();
+            ps=con.prepareStatement(comando);
+            rs=ps.executeQuery();
+            while(rs.next()){
+                us.setUsuarioID(rs.getInt("UsuarioID"));
+                us.setRolID(rs.getInt("RolID"));
+                us.setTiendaID(rs.getInt("TiendaID"));
+            } 
+        }catch(Exception error){
+            
+        }
+        return us;
     }
 
     @Override
     public boolean add(UsuarioRol tienda) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String comando = "CALL spUsuariosRolesEdit(" + tienda.getUsuarioID()+ ",'" + tienda.getRolID()+ "'," + tienda.getTiendaID()+ ");";
+        try{
+            con = cxn.getConnection();
+            ps = con.prepareStatement(comando);
+            ps.executeQuery();
+        }catch(Exception error){
+            
+        }
+        return false;
     }
 
     @Override
     public boolean edit(UsuarioRol tienda) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String comando = "CALL spUsuariosRolesUpdate (" + tienda.getUsuarioID()+ ",'" + tienda.getRolID()+ "'," + tienda.getTiendaID()+ ");";
+        try{
+            con = cxn.getConnection();
+            ps = con.prepareStatement(comando);
+            ps.executeQuery();
+        }catch(Exception error){
+            
+        }
+        return false;
+    }
+
+    @Override
+    public boolean delete(int TiendaID, int UsuarioID, int RolID) {
+        String comando = "delete from USUARIOSROLES WHERE UsuarioID="+UsuarioID+" AND RolID="+RolID+" AND TiendaID="+TiendaID;
+        try{
+            con = cxn.getConnection();
+            ps = con.prepareStatement(comando);
+            ps.executeUpdate();
+        }catch(Exception error){
+            
+        }
+        return false;
     }
     
 }

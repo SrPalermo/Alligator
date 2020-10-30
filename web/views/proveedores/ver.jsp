@@ -43,7 +43,10 @@
                         <a class="nav-link" href="ProveedorController?accion=listar">Proveedores</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="ProductosController?accion=listar">Productos</a>
+                        <a class="nav-link" href="MarcaController?accion=listar">Marcas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="ProductoController?accion=listar">Productos</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -54,9 +57,9 @@
                                 &nbsp;&nbsp;&nbsp;&nbsp; Sesiones
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="ProveedorController?accion=listar">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Usuarios</a>
-                                <a class="dropdown-item" href="ProveedorController?accion=listar">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Roles</a>
-                                <a class="dropdown-item" href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Asignación de Usuarios</a>
+                                <a class="dropdown-item" href="UsuarioController?accion=listar">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Usuarios</a>
+                                <a class="dropdown-item" href="RolesController?accion=listar">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Roles</a>
+                                <a class="dropdown-item" href="UsuarioRolController?accion=listar">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Asignación de Usuarios</a>
                             </div>    
                         </div>
                     </li>

@@ -7,26 +7,26 @@ package controllers;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import models.UsuarioRol;
+import modelsDao.UsuarioRolDao;
 
 /**
  *
  * @author lgomez
  */
 public class UsuarioRolController extends HttpServlet {
-
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+    String list = "views/asignacionroles/ver.jsp";
+    String add = "views/asignacionroles/crear.jsp";
+    String edit = "views/asignacionroles/editar.jsp";
+    UsuarioRol us= new UsuarioRol();
+    UsuarioRolDao dao = new UsuarioRolDao();
+    int Id;
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -44,29 +44,62 @@ public class UsuarioRolController extends HttpServlet {
         }
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        String access="";
+        String action=request.getParameter("accion");
+        if(action.equalsIgnoreCase("listar")){
+            access=list;
+        }else if(action.equalsIgnoreCase("crear")){
+            access=add;
+        }else if(action.equalsIgnoreCase("guardar")){
+            
+            int UsuarioID = Integer.parseInt(request.getParameter("xUsuarioID"));
+            int RoID = Integer.parseInt(request.getParameter("xRoID"));
+            int TiendaD = Integer.parseInt(request.getParameter("xTiendaID"));
+           // String MarcaID = request.getParameter("xMarcaID");
+            us.setUsuarioID(UsuarioID);
+            us.setRolID(RoID);      
+            us.setTiendaID(TiendaD);      
+            dao.add(us);    
+            access=list;
+        }else if(action.equalsIgnoreCase("editar")){
+            request.setAttribute("UsuarioID",request.getParameter("UsuarioID"));
+            request.setAttribute("RolID",request.getParameter("RolID"));
+            request.setAttribute("TiendaID",request.getParameter("TiendaID"));
+            access=edit;
+        }else if(action.equalsIgnoreCase("actualizar")){
+            Id = Integer.parseInt(request.getParameter("xId"));
+            int UsuarioID = Integer.parseInt(request.getParameter("xUsuarioID"));
+            int RoID = Integer.parseInt(request.getParameter("xRoID"));
+            int TiendaD = Integer.parseInt(request.getParameter("xTiendaID"));
+           // String MarcaID = request.getParameter("xMarcaID");
+            us.setUsuarioID(UsuarioID);
+            us.setRolID(RoID);      
+            us.setTiendaID(TiendaD);      
+            dao.edit(us);
+            access=list;
+        }else if(action.equalsIgnoreCase("eliminar")){
+            Id = Integer.parseInt(request.getParameter("ProductoID"));
+            int UsuarioID = Integer.parseInt(request.getParameter("xUsuarioID"));
+            int RoID = Integer.parseInt(request.getParameter("xRoID"));
+            int TiendaD = Integer.parseInt(request.getParameter("xTiendaID"));
+           // String MarcaID = request.getParameter("xMarcaID");
+            us.setUsuarioID(UsuarioID);
+            us.setRolID(RoID);      
+            us.setTiendaID(TiendaD);
+         //   dao.delete(Id);
+            access=list;
+        }
+                
+        RequestDispatcher vista = request.getRequestDispatcher(access);
+        vista.forward(request, response);
+      
+        
         processRequest(request, response);
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
