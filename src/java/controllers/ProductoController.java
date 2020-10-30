@@ -7,12 +7,14 @@ package controllers;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+import models.Producto;
+import modelsDao.ProductoDao;
 /**
  *
  * @author arodas
@@ -20,15 +22,12 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "ProductoController", urlPatterns = {"/ProductoController"})
 public class ProductoController extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+    String list = "views/productos/ver.jsp";
+    String add = "views/productos/crear.jsp";
+    String edit = "views/productos/editar.jsp";
+    Producto producto= new Producto();
+    ProductoDao dao = new ProductoDao();
+    int Id;
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -58,6 +57,44 @@ public class ProductoController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        String access="";
+        String action=request.getParameter("accion");
+        if(action.equalsIgnoreCase("listar")){
+            access=list;
+        }else if(action.equalsIgnoreCase("crear")){
+            access=add;
+        }else if(action.equalsIgnoreCase("guardar")){
+            
+            int MarcaID = Integer.parseInt(request.getParameter("xMarcaID"));
+            String Descripcion = request.getParameter("xDescripcion");
+           // String MarcaID = request.getParameter("xMarcaID");
+            producto.setDescripcion(Descripcion);
+            producto.setMarcaID(MarcaID);      
+            dao.add(producto);    
+            access=list;
+        }else if(action.equalsIgnoreCase("editar")){
+            request.setAttribute("ProductoID",request.getParameter("ProductoID"));
+            access=edit;
+        }else if(action.equalsIgnoreCase("actualizar")){
+            Id = Integer.parseInt(request.getParameter("xId"));
+            String Descripcion = request.getParameter("xDescripcion");
+            String MarcaID = request.getParameter("xMarcaID");
+            producto.setProductoID(Id);
+            producto.setDescripcion(Descripcion);
+            producto.setMarcaID(Integer.getInteger(MarcaID));      
+            dao.edit(producto);
+            access=list;
+        }else if(action.equalsIgnoreCase("eliminar")){
+            Id = Integer.parseInt(request.getParameter("ProductoID"));
+            producto.setProductoID(Id);
+            dao.delete(Id);
+            access=list;
+        }
+                
+        RequestDispatcher vista = request.getRequestDispatcher(access);
+        vista.forward(request, response);
+      
+        
         processRequest(request, response);
     }
 
