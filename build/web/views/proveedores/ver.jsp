@@ -6,22 +6,21 @@
 
 <%@page import="java.util.Iterator"%>
 <%@page import="java.util.List"%>
-<%@page import="models.Cliente"%>
-<%@page import="modelsDao.ClienteDao"%>
+<%@page import="models.Proveedor"%>
+<%@page import="modelsDao.ProveedorDao"%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
-        <<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Proveedores</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 
     </head>
     <body>
         
-        
-           <!-- inicia el navbar -->
+         <!-- inicia el navbar -->
         
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <a class="navbar-brand" href="#">Alligator</a>
@@ -40,6 +39,12 @@
                     <li class="nav-item">
                         <a class="nav-link" href="ClienteController?accion=listar">Clientes</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="ProveedorController?accion=listar">Proveedores</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="ProductosController?accion=listar">Productos</a>
+                    </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Configuración
@@ -49,8 +54,8 @@
                                 &nbsp;&nbsp;&nbsp;&nbsp; Sesiones
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="UsuarioController?accion=listar">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Usuarios</a>
-                                <a class="dropdown-item" href="RolesController?accion=listar">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Roles</a>
+                                <a class="dropdown-item" href="ProveedorController?accion=listar">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Usuarios</a>
+                                <a class="dropdown-item" href="ProveedorController?accion=listar">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Roles</a>
                                 <a class="dropdown-item" href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Asignación de Usuarios</a>
                             </div>    
                         </div>
@@ -64,9 +69,9 @@
         
         <br/>
         <div style="border: 1pt;" class="container-fluid">
-            <h1>Clientes</h1>
+            <h1>Proveedores</h1>
             <br/>
-            <a type="button" class="btn btn-primary" href="TiendaController?accion=crear">Nueva Tienda</a>
+            <a type="button" class="btn btn-primary" href="ProveedorController?accion=crear">Nuevo Proveedor</a>
             <hr/>
         </div>
 
@@ -76,7 +81,7 @@
             <table class="table table-striped table-dark " border="1">
                 <thead>
                     <tr>
-                        <th>ID CLIENTE</th>
+                        <th>ID Proveedor</th>
                         <th>NOMBRE</th>
                         <th>APELLIDO</th>
                         <th>EMAIL</th>
@@ -88,26 +93,26 @@
                 </thead>
 
                 <%
-                    ClienteDao clientes = new ClienteDao();
-                    List<Cliente> list = clientes.listar();
-                    Iterator<Cliente> iter = list.iterator();
-                    Cliente cliente = null;
+                    ProveedorDao proveedores = new ProveedorDao();
+                    List<Proveedor> list = proveedores.listar();
+                    Iterator<Proveedor> iter = list.iterator();
+                    Proveedor proveedor = null;
                     while (iter.hasNext()) {
-                        cliente = iter.next();
+                        proveedor = iter.next();
                 %>
 
                 <tbody>
                     <tr>
-                        <td><%= cliente.getClienteID() %></td>
-                        <td><%= cliente.getNombre() %></td>
-                        <td><%= cliente.getApellido() %></td>
-                        <td><%= cliente.getEmail() %></td>
-                        <td><%= cliente.getDireccion() %></td>
-                        <td><%= cliente.getNit() %></td>
-                        <td><%= cliente.getEstado() %></td>
+                        <td><%= proveedor.getProveedorID()%></td>
+                        <td><%= proveedor.getNombre() %></td>
+                        <td><%= proveedor.getApellido() %></td>
+                        <td><%= proveedor.getEmail() %></td>
+                        <td><%= proveedor.getDireccion() %></td>
+                        <td><%= proveedor.getNit() %></td>
+                        <td><%= proveedor.getEstado() %></td>
                         <td>
-                            <a type="button" class="btn btn-info" href="ClienteController?accion=editar&TiendaID=<%= cliente.getClienteID() %>">Editar</a>
-                            <a type="button" class="btn btn-danger" href="ClienteController?accion=eliminar&TiendaID=<%= cliente.getClienteID() %>">Eliminar</a>
+                            <a type="button" class="btn btn-info" href="ProveedorController?accion=editar&ProveedorID=<%= proveedor.getProveedorID()%>">Editar</a>
+                            <a type="button" class="btn btn-danger" href="ProveedorController?accion=eliminar&ProveedorID=<%= proveedor.getProveedorID()%>">Eliminar</a>
                         </td>
                     </tr>
                 </tbody>

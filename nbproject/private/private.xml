@@ -3,14 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/git/Personal/Proyecto/Alligator/src/java/controllers/ProveedorController.java</file>
-            <file>file:/C:/git/Personal/Proyecto/Alligator/src/java/modelsDao/ClienteDao.java</file>
-            <file>file:/C:/git/Personal/Proyecto/Alligator/web/views/asignacionroles/ver.jsp</file>
-            <file>file:/C:/git/Personal/Proyecto/Alligator/src/java/modelsDao/ProveedorDao.java</file>
-            <file>file:/C:/git/Personal/Proyecto/Alligator/web/views/roles/editar.jsp</file>
-            <file>file:/C:/git/Personal/Proyecto/Alligator/src/java/modelsDao/ProductoDao.java</file>
-            <file>file:/C:/git/Personal/Proyecto/Alligator/src/java/modelsDao/UsuarioDao.java</file>
-            <file>file:/C:/git/Personal/Proyecto/Alligator/src/java/models/Proveedor.java</file>
+            <file>file:/D:/NetbeansProjects/ProyectoFinalAlligator/src/java/modelsDao/ClienteDao.java</file>
+            <file>file:/D:/NetbeansProjects/ProyectoFinalAlligator/web/views/clientes/ver.jsp</file>
+            <file>file:/D:/NetbeansProjects/ProyectoFinalAlligator/src/java/controllers/ClienteController.java</file>
         </group>
     </open-files>
 </project-private>
