@@ -24,7 +24,7 @@ public class ProveedorDao implements CrudProveedor{
     @Override
     public List listar() {
         ArrayList<Proveedor>list=new ArrayList<>();
-        String comando = "SELECT *FROM proveedores";
+        String comando = "SELECT *FROM Proveedores";
         try{
             con=cxn.getConnection();
             ps=con.prepareStatement(comando);
@@ -72,7 +72,7 @@ public class ProveedorDao implements CrudProveedor{
 
     @Override
     public boolean add(Proveedor proveedor) {
-        String comando = "CALL SpProveedorInsert ('" + proveedor.getNombre() + "','" + proveedor.getApellido() + "','" + proveedor.getEmail()+ "','" + proveedor.getDireccion()+ "','" + proveedor.getNit()+ "');";
+        String comando = "CALL SpProveedoresInsert ('" + proveedor.getNombre() + "','" + proveedor.getApellido() + "','" + proveedor.getEmail()+ "','" + proveedor.getDireccion()+ "','" + proveedor.getNit()+ "');";
         try{
             con = cxn.getConnection();
             ps = con.prepareStatement(comando);
@@ -85,7 +85,7 @@ public class ProveedorDao implements CrudProveedor{
 
     @Override
     public boolean edit(Proveedor proveedor) {
-        String comando = "CALL SpproveedorsEdit(" + proveedor.getProveedorID()+ ",'" + proveedor.getNombre() + "','" + proveedor.getApellido() + "','" + proveedor.getEmail()+ "','" + proveedor.getDireccion()+ "','" + proveedor.getNit()+ "');";
+        String comando = "CALL SpProveedoresEdit(" + proveedor.getProveedorID()+ ",'" + proveedor.getNombre() + "','" + proveedor.getApellido() + "','" + proveedor.getEmail()+ "','" + proveedor.getDireccion()+ "'," + proveedor.getNit()+ ");";
         try{
             con = cxn.getConnection();
             ps = con.prepareStatement(comando);

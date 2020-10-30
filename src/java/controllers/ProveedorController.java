@@ -24,7 +24,7 @@ public class ProveedorController extends HttpServlet {
     String list = "views/proveedores/ver.jsp";
     String add = "views/proveedores/crear.jsp";
     String edit = "views/proveedores/editar.jsp";
-    Proveedor u= new Proveedor();
+    Proveedor proveedor= new Proveedor();
     ProveedorDao dao = new ProveedorDao();
     int Id;
     
@@ -60,12 +60,12 @@ public class ProveedorController extends HttpServlet {
             String Email = request.getParameter("xEmail");
             String Direccion = request.getParameter("xDireccion");
             String Nit = request.getParameter("xNit");
-            u.setNombre(Nombre);
-            u.setApellido(Apellido);
-            u.setEmail(Email);
-            u.setDireccion(Direccion);
-            u.setNit(Nit);
-            dao.add(u);    
+            proveedor.setNombre(Nombre);
+            proveedor.setApellido(Apellido);
+            proveedor.setEmail(Email);
+            proveedor.setDireccion(Direccion);
+            proveedor.setNit(Nit);
+            dao.add(proveedor);    
             access=list;
         }else if(action.equalsIgnoreCase("editar")){
             request.setAttribute("ProveedorID",request.getParameter("ProveedorID"));
@@ -77,17 +77,17 @@ public class ProveedorController extends HttpServlet {
             String Email = request.getParameter("xEmail");
             String Direccion = request.getParameter("xDireccion");
             String Nit = request.getParameter("xNit");
-            u.setProveedorID(Id);
-            u.setNombre(Nombre);
-            u.setApellido(Apellido);
-            u.setEmail(Email);
-            u.setDireccion(Direccion);
-            u.setNit(Nit);
-            dao.edit(u);
+            proveedor.setProveedorID(Id);
+            proveedor.setNombre(Nombre);
+            proveedor.setApellido(Apellido);
+            proveedor.setEmail(Email);
+            proveedor.setDireccion(Direccion);
+            proveedor.setNit(Nit);
+            dao.edit(proveedor);
             access=list;
         }else if(action.equalsIgnoreCase("eliminar")){
             Id = Integer.parseInt(request.getParameter("ProveedorID"));
-            u.setProveedorID(Id);
+            proveedor.setProveedorID(Id);
             dao.delete(Id);
             access=list;
         }
