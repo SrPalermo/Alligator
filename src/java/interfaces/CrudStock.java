@@ -4,18 +4,16 @@
  * and open the template in the editor.
  */
 package interfaces;
-
 import java.util.List;
-import models.OrdenCompra;
-
+import models.Stock;
 /**
  *
  * @author arodas
  */
-public interface CrudOrdenCompra {
+public interface CrudStock {
     public List listar();
-    public OrdenCompra list(int OrdenCompraID);
-    public boolean add(OrdenCompra ordenCompra);
-    public boolean edit(OrdenCompra ordenCompra);
-    public boolean delete(int OrdenCompraID);
+    public Stock list(int StockID);
+    public boolean add(Stock stock);
+    public boolean edit(Stock stock);
+    public boolean delete(int StockID);
 }
