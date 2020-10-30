@@ -89,9 +89,7 @@
                         <h5>Descripcion</h5>
                         <input name="xId" type="hidden" value="<%= producto.getProductoID()%>">
                         <input name="xDescripcion" type="text"  class="form-control" placeholder="Ingrese una Descripcion" required="" autofocus="" value="<%= producto.getDescripcion() %>"> <br/>
-                       
-                        
-                                               
+                                                                      
                         <select name="xMarcaID" class="form-control" >
 
                                 <%
