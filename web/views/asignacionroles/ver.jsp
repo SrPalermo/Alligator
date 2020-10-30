@@ -4,6 +4,11 @@
     Author     : lgomez
 --%>
 
+<%@page import="java.util.Iterator"%>
+<%@page import="java.util.List"%>
+<%@page import="models.UsuarioRol"%>
+<%@page import="modelsDao.UsuarioRolDao"%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -16,7 +21,7 @@
         <!-- inicia el navbar -->
 
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="../ProyectoFinalAlligator/home.jsp">Alligator</a>
+            <a class="navbar-brand" href="#">Alligator</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -27,7 +32,19 @@
                         <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Productos</a>
+                        <a class="nav-link" href="TiendaController?accion=listar">Tiendas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="ClienteController?accion=listar">Clientes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="ProveedorController?accion=listar">Proveedores</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="MarcaController?accion=listar">Marcas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="ProductoController?accion=listar">Productos</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -40,7 +57,7 @@
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="UsuarioController?accion=listar">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Usuarios</a>
                                 <a class="dropdown-item" href="RolesController?accion=listar">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Roles</a>
-                                <a class="dropdown-item" href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Asignación de Usuarios</a>
+                                <a class="dropdown-item" href="UsuarioRolController?accion=listar">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Asignación de Usuarios</a>
                             </div>    
                         </div>
                     </li>
@@ -50,39 +67,53 @@
 
         <br/>
 
-        
-            <div class="d-flex">
-                <div class="col-sm-5">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="form-group">
-                                <label>Datos del Usuario</label>
-                            </div>
-                            <div class="form-group d-flex">
-                                <div class="col-sm-6 ">
-                                    <input type="text" name="xid" class="from-control" placeholder="Codigo">
-                                    <input type="submit" name="accion" value="Buscar" class="btn btn-outline-info">
-                                </div>
-                                <div class="col-sm-6">
-                                    <input type="text" name="nombreusuario" class="from-control">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label>Datos del Rol</label>
-                            </div>
-                            
-                            <div class="form-group"></div>
-                            <div class="form-group">
-                                <input type="submit" name="accion" value="Agregar" class="btn btn-outline-info">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-7">
+        <div style="border: 1pt;" class="container-fluid">
+            <h1>Productos</h1>
+            <br/>
+            <a type="button" class="btn btn-primary" href="ProductoController?accion=crear">Nuevo Producto</a>
+            <hr/>
+        </div>
 
-                </div>
-            </div>
-        
+        <div style="border: 1pt; text-align: center;" class="container-fluid">
+
+
+            <table class="table table-striped table-dark " border="1">
+                <thead>
+                    <tr>
+                        <th>ID PRODUCTO</th>
+                        <th>DESCRIPCION</th>
+                        <th>MARCA ID</th>
+                        <th>ACTIVO</th>
+                        <th>ACCIONES</th>
+                    </tr>
+                </thead>
+
+                <%
+                    UsuarioRolDao productos = new UsuarioRolDao();
+                    List<UsuarioRol> list = productos.listar();
+                    Iterator<UsuarioRol> iter = list.iterator();
+                    UsuarioRol producto = null;
+                    while (iter.hasNext()) {
+                        producto = iter.next();
+                %>
+
+                <tbody>
+                    <tr>
+                        <td><%= producto.getUsuarioID()%></td>
+                        <td><%= producto.getTiendaID()%></td>
+                        <td><%= producto.getRolID()%></td>
+                        <td>
+                            <a type="button" class="btn btn-info" href="UsuarioRolController?accion=editar&ProductoID=<%= producto.getUsuarioID() %>">Editar</a>
+                            <a type="button" class="btn btn-danger" href="UsuarioRolController?accion=eliminar&ProductoID=<%= producto.getUsuarioID() %>">Eliminar</a>
+                        </td>
+                    </tr>
+                </tbody>
+
+                <%}%>
+
+            </table>
+
+        </div>
         
         <!-- JS here -->
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

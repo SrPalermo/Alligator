@@ -11,42 +11,41 @@ package models;
  * @author lgomez
  */
 public class UsuarioRol {
-    Usuario Usuario;
-    Rol Rol;
-    Tienda Tienda;
-    
+    int UsuarioID;
+    int RolID;
+    int TiendaID;
+
     public UsuarioRol(){
-        
+    }
+    
+    public UsuarioRol(int UsuarioID, int RolID, int TiendaID) {
+        this.UsuarioID = UsuarioID;
+        this.RolID = RolID;
+        this.TiendaID = TiendaID;
     }
 
-    public UsuarioRol(Usuario Usuario, Rol Rol, Tienda Tienda) {
-        this.Usuario = Usuario;
-        this.Rol = Rol;
-        this.Tienda = Tienda;
+    public int getUsuarioID() {
+        return UsuarioID;
     }
 
-    public Usuario getUsuario() {
-        return Usuario;
+    public int getRolID() {
+        return RolID;
     }
 
-    public Rol getRol() {
-        return Rol;
+    public int getTiendaID() {
+        return TiendaID;
     }
 
-    public Tienda getTienda() {
-        return Tienda;
+    public void setUsuarioID(int UsuarioID) {
+        this.UsuarioID = UsuarioID;
     }
 
-    public void setUsuario(Usuario Usuario) {
-        this.Usuario = Usuario;
+    public void setRolID(int RolID) {
+        this.RolID = RolID;
     }
 
-    public void setRol(Rol Rol) {
-        this.Rol = Rol;
-    }
-
-    public void setTienda(Tienda Tienda) {
-        this.Tienda = Tienda;
+    public void setTiendaID(int TiendaID) {
+        this.TiendaID = TiendaID;
     }
     
 }

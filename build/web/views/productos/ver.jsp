@@ -61,7 +61,7 @@
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="UsuarioController?accion=listar">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Usuarios</a>
                                 <a class="dropdown-item" href="RolesController?accion=listar">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Roles</a>
-                                <a class="dropdown-item" href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Asignación de Usuarios</a>
+                                <a class="dropdown-item" href="UsuarioRolController?accion=listar">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Asignación de Usuarios</a>
                             </div>    
                         </div>
                     </li>
@@ -111,7 +111,7 @@
                         <td><%= producto.getEstado() %></td>
                         <td>
                             <a type="button" class="btn btn-info" href="ProductoController?accion=editar&ProductoID=<%= producto.getProductoID() %>">Editar</a>
-                            <a type="button" class="btn btn-danger" href="TiendaController?accion=eliminar&ProductoID=<%= producto.getProductoID() %>">Eliminar</a>
+                            <a type="button" class="btn btn-danger" href="ProductoController?accion=eliminar&ProductoID=<%= producto.getProductoID() %>">Eliminar</a>
                         </td>
                     </tr>
                 </tbody>
