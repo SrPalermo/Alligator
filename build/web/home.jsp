@@ -42,10 +42,10 @@
                         <a class="nav-link" href="ProductoController?accion=listar">Productos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="ordenCompraController?accion=listar">GENERAR ORDEN DE COMPRA</a>
+                        <a class="nav-link" href="OrdenCompraController?accion=listar">GENERAR ORDEN DE COMPRA</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="ordenVentaController?accion=listar">GENERAR ORDEN DE VENTA</a>
+                        <a class="nav-link" href="OrdenVentaController?accion=listar">GENERAR ORDEN DE VENTA</a>
                     </li>
                     
                     <li class="nav-item dropdown">

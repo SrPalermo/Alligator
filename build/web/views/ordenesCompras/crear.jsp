@@ -67,7 +67,66 @@
 
         <!-- Finaliza el navbar -->
         
-        
+        <br/>
+
+        <div>
+
+
+            <div class="container">
+                <h1>Nueva Orden Compra</h1>
+                <br/>
+                <form class="form-horizontal" widht="" heigth="" action="ProductoController">
+                    <div class="form-group">
+                        <label class="control-label col-sm-2">Descripcion</label>
+                        <div class="col-sm-10">
+                            <input name="xDescripcion" type="text"  class="form-control" placeholder="Ingrese una Descripcion" required="" autofocus="">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-sm-2">Marca</label>
+                        <div class="col-sm-10">
+                            <select name="xMarcaID" class="form-control"  >
+
+                                <%
+                                    MarcaDao marcas = new MarcaDao();
+                                    List<Marca> list = marcas.listar();
+                                    Iterator<Marca> iter = list.iterator();
+                                    Marca marca = null;
+                                    while (iter.hasNext()) {
+                                        marca = iter.next();
+                                %>
+
+                                <option value="<%= marca.getMarcaID()%>"><%= marca.getDescripcion()%> </option>
+
+                                <%}%>
+
+                            </select>
+                        </div>
+                                
+                    </div>
+
+                    <div class="col-sm-4">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <button class="btn btn-lg btn-primary btn-block" name="accion" type="submit" value="guardar" >Guardar</button> 
+                                    </td>
+                                    <td>
+                                        <a type="button" class="btn btn-lg btn-danger btn-block" href="ProductoController?accion=listar">Cancelar</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+
+                </form>
+            </div>
+
+        </div>
+
         
         
         
