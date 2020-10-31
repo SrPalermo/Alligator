@@ -37,15 +37,15 @@
         <br/>
       
         <!-- Content here -->
-        <form class="form-signin" widht="" heigth=""  action="UsuarioController" method="POST">
+        <form class="form-signin" widht="" heigth=""  action="Validar" method="POST">
             <center>
                 <div class="col-md-3">
                     <img class="mb-4" src="https://image.flaticon.com/icons/png/512/65/65685.png" alt="" width="150" height="150">
                     <br/>
 
-                    <input type="email" name="txtemail" id="inputEmail" class="form-control"     placeholder="Usuario" required="" autofocus="">
+                    <input type="text" name="txtemail"  class="form-control"     placeholder="Usuario" required="" autofocus="">
 
-                    <input type="password" name="txtpass" id="txtpass" class="form-control" placeholder="Contraseña" required="">
+                    <input type="password" name="txtpass"  class="form-control" placeholder="Contraseña" required="">
                     <br/>
                     <button class="btn btn-lg btn-primary btn-block" type="submit"  name="accion" value="Ingresar">Entrar</button>
                     <p class="mt-5 mb-3 text-muted">Alligator by Abner & Cesar Rodas Developers ©2020</p>

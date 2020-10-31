@@ -12,6 +12,14 @@
         <servlet-name>UsuarioRolController</servlet-name>
         <servlet-class>controllers.UsuarioRolController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Validar</servlet-name>
+        <servlet-class>controllers.Validar</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Controlador</servlet-name>
+        <servlet-class>controllers.Controlador</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>UsuarioController</servlet-name>
         <url-pattern>/UsuarioController</url-pattern>
@@ -23,6 +31,14 @@
     <servlet-mapping>
         <servlet-name>UsuarioRolController</servlet-name>
         <url-pattern>/UsuarioRolController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Validar</servlet-name>
+        <url-pattern>/Validar</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Controlador</servlet-name>
+        <url-pattern>/Controlador</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

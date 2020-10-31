@@ -139,7 +139,7 @@ public class UsuarioDao implements Crud{
     @Override
     public Usuario validar(String Email, String Contrasea) {
         //Usuario us = new Usuario();
-        String sql="SELECT *FROM USUARIOS where Email=? and Contrasea=?";
+        String sql="SELECT *FROM USUARIOS where Usuario=? and Contrasea=?";
         try {
             con = cxn.getConnection();
             ps=con.prepareStatement(sql);
