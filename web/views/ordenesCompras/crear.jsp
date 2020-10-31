@@ -1,17 +1,29 @@
+<%-- 
+    Document   : crear
+    Created on : Oct 30, 2020, 6:19:20 PM
+    Author     : arodas
+--%>
 
-
+<%@page import="models.Proveedor"%>
+<%@page import="modelsDao.ProveedorDao"%>
+<%@page import="java.util.Iterator"%>
+<%@page import="models.OrdenCompra"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.List"%>
+<%@page import="modelsDao.OrdenCompraDao"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
-
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>Home</title>
+        
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Ordenes de Compra</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 
+        
     </head>
-    
     <body>
+        
         
         <!-- inicia el navbar -->
         
@@ -41,13 +53,6 @@
                     <li class="nav-item">
                         <a class="nav-link" href="ProductoController?accion=listar">Productos</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="OrdenCompraController?accion=listar">GENERAR ORDEN DE COMPRA</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="OrdenVentaController?accion=listar">GENERAR ORDEN DE VENTA</a>
-                    </li>
-                    
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Configuración
@@ -69,10 +74,70 @@
 
         <!-- Finaliza el navbar -->
         
-        <!-- JS here -->
+        <br/>
+
+        <div>
+
+
+            <div class="container">
+                <h1>Nueva Orden Compra</h1>
+                <br/>
+                <form class="form-horizontal" widht="" heigth="" action="OrdenCompraController">
+                    <div class="form-group">
+                        <label class="control-label col-sm-2">Proveedor</label>
+                        <div class="col-sm-10">
+                            <select name="xProveedorID" class="form-control">
+
+                                <%
+                                    ProveedorDao proveedores = new ProveedorDao();
+                                    List<Proveedor> list = proveedores.listar();
+                                    Iterator<Proveedor> iter = list.iterator();
+                                    Proveedor proveedor = null;
+                                    while (iter.hasNext()) {
+                                        proveedor = iter.next();
+                                %>
+
+                                <option value="<%= proveedor.getProveedorID()%>"><%= proveedor.getNombre() %>&nbsp;<%= proveedor.getApellido()%></option>
+
+                                <%}%>
+
+                            </select>
+                            
+                           
+                        </div>
+                    </div>
+
+                   
+                    <div class="col-sm-4">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <button class="btn btn-lg btn-primary btn-block" name="accion" type="submit" value="guardar" >Guardar</button> 
+                                    </td>
+                                    <td>
+                                        <a type="button" class="btn btn-lg btn-danger btn-block" href="OrdenCompraController?accion=listar">Cancelar</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+
+                </form>
+            </div>
+
+        </div>
+
+        
+        
+        
+         <!-- JS here -->
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 
+
+        
     </body>
 </html>
