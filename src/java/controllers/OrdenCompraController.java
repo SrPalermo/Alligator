@@ -25,7 +25,7 @@ public class OrdenCompraController extends HttpServlet {
     String list = "views/ordenesCompras/ver.jsp";
     String add = "views/ordenesCompras/crear.jsp";
     String edit = "views/ordenesCompras/editar.jsp";
-    OrdenCompra oc= new OrdenCompra();
+    OrdenCompra oc = new OrdenCompra();
     OrdenCompraDao ocd = new OrdenCompraDao();
     int Id;
     
@@ -76,12 +76,8 @@ public class OrdenCompraController extends HttpServlet {
             access=add;
         }else if(action.equalsIgnoreCase("guardar")){
             
-            int ProveedorID = Integer.parseInt(request.getParameter("xProveedorID"));
-            
-           // String MarcaID = request.getParameter("xMarcaID");
-           
-            oc.setProveedorID(ProveedorID);      
-            ocd.add(oc);    
+            int ProveedorID = Integer.parseInt(request.getParameter("xProveedorID"));          
+            ocd.add(ProveedorID);    
             access=list;
         }
         

@@ -57,13 +57,13 @@ public class OrdenCompraDao implements CrudOrdenCompra {
     }
 
     @Override
-    public boolean add(OrdenCompra ordenCompra) {
-        String comando = "CALL SpOrdenCompraInsert(" + ordenCompra.getProveedorID() + ",1);";
+    public boolean add(int OrdenCompraID) {
+        String comando = "CALL SpOrdenCompraInsert(1,1)";
         try{
             con = cxn.getConnection();
             ps = con.prepareStatement(comando);
             ps.executeQuery();
-        }catch(Exception error){
+                    }catch(Exception error){
             
         }
         return false;

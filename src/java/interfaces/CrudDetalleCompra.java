@@ -6,16 +6,16 @@
 package interfaces;
 
 import java.util.List;
-import models.OrdenCompra;
+import models.DetalleCompra;
 
 /**
  *
  * @author arodas
  */
-public interface CrudOrdenCompra {
+public interface CrudDetalleCompra {
     public List listar();
-    public OrdenCompra list(int OrdenCompraID);
-    public boolean add(int ordenCompra);
-    public boolean edit(OrdenCompra ordenCompra);
-    public boolean delete(int OrdenCompraID);
+    public List list(int DetalleID);
+    public boolean add(DetalleCompra detalle);
+    public boolean edit(DetalleCompra detalle);
+    public boolean delete(int DetalleID);
 }

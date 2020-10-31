@@ -4,6 +4,13 @@
     Author     : arodas
 --%>
 
+<%@page import="models.Proveedor"%>
+<%@page import="modelsDao.ProveedorDao"%>
+<%@page import="java.util.Iterator"%>
+<%@page import="models.OrdenCompra"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.List"%>
+<%@page import="modelsDao.OrdenCompraDao"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -75,37 +82,32 @@
             <div class="container">
                 <h1>Nueva Orden Compra</h1>
                 <br/>
-                <form class="form-horizontal" widht="" heigth="" action="ProductoController">
+                <form class="form-horizontal" widht="" heigth="" action="OrdenCompraController">
                     <div class="form-group">
-                        <label class="control-label col-sm-2">Descripcion</label>
+                        <label class="control-label col-sm-2">Proveedor</label>
                         <div class="col-sm-10">
-                            <input name="xDescripcion" type="text"  class="form-control" placeholder="Ingrese una Descripcion" required="" autofocus="">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="control-label col-sm-2">Marca</label>
-                        <div class="col-sm-10">
-                            <select name="xMarcaID" class="form-control"  >
+                            <select name="xProveedorID" class="form-control">
 
                                 <%
-                                    MarcaDao marcas = new MarcaDao();
-                                    List<Marca> list = marcas.listar();
-                                    Iterator<Marca> iter = list.iterator();
-                                    Marca marca = null;
+                                    ProveedorDao proveedores = new ProveedorDao();
+                                    List<Proveedor> list = proveedores.listar();
+                                    Iterator<Proveedor> iter = list.iterator();
+                                    Proveedor proveedor = null;
                                     while (iter.hasNext()) {
-                                        marca = iter.next();
+                                        proveedor = iter.next();
                                 %>
 
-                                <option value="<%= marca.getMarcaID()%>"><%= marca.getDescripcion()%> </option>
+                                <option value="<%= proveedor.getProveedorID()%>"><%= proveedor.getNombre() %>&nbsp;<%= proveedor.getApellido()%></option>
 
                                 <%}%>
 
                             </select>
+                            
+                           
                         </div>
-                                
                     </div>
 
+                   
                     <div class="col-sm-4">
                         <table>
                             <tbody>
@@ -114,7 +116,7 @@
                                         <button class="btn btn-lg btn-primary btn-block" name="accion" type="submit" value="guardar" >Guardar</button> 
                                     </td>
                                     <td>
-                                        <a type="button" class="btn btn-lg btn-danger btn-block" href="ProductoController?accion=listar">Cancelar</a>
+                                        <a type="button" class="btn btn-lg btn-danger btn-block" href="OrdenCompraController?accion=listar">Cancelar</a>
                                     </td>
                                 </tr>
                             </tbody>
