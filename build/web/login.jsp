@@ -37,7 +37,7 @@
         <br/>
       
         <!-- Content here -->
-        <form class="form-signin" widht="" heigth=""  action="Validar" method="POST">
+        <form class="form-signin" widht="" heigth=""  action="Validar?accion=Ingresar" method="POST">
             <center>
                 <div class="col-md-3">
                     <img class="mb-4" src="https://image.flaticon.com/icons/png/512/65/65685.png" alt="" width="150" height="150">
