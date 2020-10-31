@@ -27,13 +27,14 @@ public class UsuarioRolDao implements CrudUsuarioRol{
     @Override
     public List listar() {
         ArrayList<UsuarioRol>list=new ArrayList<>();
-        String comando = "SELECT *FROM proveedores";
+        String comando = "SELECT *FROM USUARIOSROLES";
         try{
             con=cxn.getConnection();
             ps=con.prepareStatement(comando);
             rs=ps.executeQuery();
             while(rs.next()){
                 UsuarioRol u = new UsuarioRol();
+                u.setID(rs.getInt("ID"));
                 u.setUsuarioID(rs.getInt("UsuarioID"));
                 u.setRolID(rs.getInt("RolID"));
                 u.setTiendaID(rs.getInt("TiendaID"));
@@ -47,14 +48,15 @@ public class UsuarioRolDao implements CrudUsuarioRol{
     }
 
     @Override
-    public UsuarioRol list(int TiendaID,int UsuarioID,int RolID) {
+    public UsuarioRol list(int ID) {
         ArrayList<UsuarioRol>list=new ArrayList<>();
-        String comando = "SELECT *FROM USUARIOSROLES WHERE UsuarioID="+UsuarioID+" AND RolID="+RolID+" AND TiendaID="+TiendaID;
+        String comando = "SELECT *FROM USUARIOSROLES WHERE ID="+ID;
         try{
             con=cxn.getConnection();
             ps=con.prepareStatement(comando);
             rs=ps.executeQuery();
             while(rs.next()){
+                us.setID(rs.getInt("ID"));
                 us.setUsuarioID(rs.getInt("UsuarioID"));
                 us.setRolID(rs.getInt("RolID"));
                 us.setTiendaID(rs.getInt("TiendaID"));
@@ -80,7 +82,7 @@ public class UsuarioRolDao implements CrudUsuarioRol{
 
     @Override
     public boolean edit(UsuarioRol tienda) {
-        String comando = "CALL spUsuariosRolesUpdate (" + tienda.getUsuarioID()+ ",'" + tienda.getRolID()+ "'," + tienda.getTiendaID()+ ");";
+        String comando = "CALL spUsuariosRolesUpdate ("+ tienda.getID()+ ",'" + tienda.getUsuarioID()+ ",'" + tienda.getRolID()+ "'," + tienda.getTiendaID()+ ");";
         try{
             con = cxn.getConnection();
             ps = con.prepareStatement(comando);
@@ -92,8 +94,8 @@ public class UsuarioRolDao implements CrudUsuarioRol{
     }
 
     @Override
-    public boolean delete(int TiendaID, int UsuarioID, int RolID) {
-        String comando = "delete from USUARIOSROLES WHERE UsuarioID="+UsuarioID+" AND RolID="+RolID+" AND TiendaID="+TiendaID;
+    public boolean delete(int ID) {
+        String comando = "delete from USUARIOSROLES WHERE ID="+ID;
         try{
             con = cxn.getConnection();
             ps = con.prepareStatement(comando);

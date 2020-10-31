@@ -6,8 +6,12 @@
 
 <%@page import="java.util.Iterator"%>
 <%@page import="java.util.List"%>
-<%@page import="models.Marca"%>
-<%@page import="modelsDao.MarcaDao"%>
+<%@page import="models.Usuario"%>
+<%@page import="models.Rol"%>
+<%@page import="models.Tienda"%>
+<%@page import="modelsDao.TiendaDao"%>
+<%@page import="modelsDao.UsuarioDao"%>
+<%@page import="modelsDao.RolDao"%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -15,7 +19,7 @@
     <head>
 
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>Productos</title>
+        <title>Asignacion Usuario</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 
     </head>
@@ -77,31 +81,69 @@
 
 
             <div class="container">
-                <h1>Nuevo Producto</h1>
+                <h1>Asignacion de Rol</h1>
                 <br/>
-                <form class="form-horizontal" widht="" heigth="" action="ProductoController">
-                    <div class="form-group">
-                        <label class="control-label col-sm-2">Descripcion</label>
-                        <div class="col-sm-10">
-                            <input name="xDescripcion" type="text"  class="form-control" placeholder="Ingrese una Descripcion" required="" autofocus="">
-                        </div>
-                    </div>
+                <form class="form-horizontal" widht="" heigth="" action="UsuarioRolController">
 
                     <div class="form-group">
-                        <label class="control-label col-sm-2">Marca</label>
+                        <label class="control-label col-sm-2">Usuario</label>
                         <div class="col-sm-10">
-                            <select name="xMarcaID" class="form-control">
+                            <select name="xUsuarioID" class="form-control">
 
                                 <%
-                                    MarcaDao marcas = new MarcaDao();
-                                    List<Marca> list = marcas.listar();
-                                    Iterator<Marca> iter = list.iterator();
-                                    Marca marca = null;
+                                    UsuarioDao marcas = new UsuarioDao();
+                                    List<Usuario> list = marcas.listar();
+                                    Iterator<Usuario> iter = list.iterator();
+                                    Usuario marca = null;
                                     while (iter.hasNext()) {
                                         marca = iter.next();
                                 %>
 
-                                <option value="<%= marca.getMarcaID()%>"><%= marca.getDescripcion()%> </option>
+                                <option value="<%= marca.getUsuarioID()%>"><%= marca.getNombre()%> </option>
+
+                                <%}%>
+
+                            </select>
+                        </div>
+                                
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2">Rol</label>
+                        <div class="col-sm-10">
+                            <select name="xRoID" class="form-control">
+
+                                <%
+                                    RolDao roles = new RolDao();
+                                    List<Rol> rollist = roles.listar();
+                                    Iterator<Rol> roliter = rollist.iterator();
+                                    Rol role = null;
+                                    while (roliter.hasNext()) {
+                                        role = roliter.next();
+                                %>
+
+                                <option value="<%= role.getRolID()%>"><%= role.getDescripcion()%> </option>
+
+                                <%}%>
+
+                            </select>
+                        </div>
+                                
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2">Tienda</label>
+                        <div class="col-sm-10">
+                            <select name="xTiendaID" class="form-control">
+
+                                <%
+                                    TiendaDao x = new TiendaDao();
+                                    List<Tienda> tiendalist = x.listar();
+                                    Iterator<Tienda> tiendaiter = tiendalist.iterator();
+                                    Tienda tienda = null;
+                                    while (tiendaiter.hasNext()) {
+                                        tienda = tiendaiter.next();
+                                %>
+
+                                <option value="<%= tienda.getTiendaID() %>"><%= tienda.getNombre() %> </option>
 
                                 <%}%>
 
@@ -118,7 +160,7 @@
                                         <button class="btn btn-lg btn-primary btn-block" name="accion" type="submit" value="guardar" >Guardar</button> 
                                     </td>
                                     <td>
-                                        <a type="button" class="btn btn-lg btn-danger btn-block" href="ProductoController?accion=listar">Cancelar</a>
+                                        <a type="button" class="btn btn-lg btn-danger btn-block" href="UsuarioRolController?accion=listar">Cancelar</a>
                                     </td>
                                 </tr>
                             </tbody>

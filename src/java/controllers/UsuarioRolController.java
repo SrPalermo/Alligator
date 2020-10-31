@@ -13,6 +13,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import models.UsuarioRol;
+import modelsDao.RolDao;
+import modelsDao.TiendaDao;
+import modelsDao.UsuarioDao;
 import modelsDao.UsuarioRolDao;
 
 /**
@@ -25,6 +28,9 @@ public class UsuarioRolController extends HttpServlet {
     String edit = "views/asignacionroles/editar.jsp";
     UsuarioRol us= new UsuarioRol();
     UsuarioRolDao dao = new UsuarioRolDao();
+    UsuarioDao userDao = new UsuarioDao();
+    RolDao rolDao = new RolDao();
+    TiendaDao tiendaDao =new TiendaDao();
     int Id;
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -65,9 +71,7 @@ public class UsuarioRolController extends HttpServlet {
             dao.add(us);    
             access=list;
         }else if(action.equalsIgnoreCase("editar")){
-            request.setAttribute("UsuarioID",request.getParameter("UsuarioID"));
-            request.setAttribute("RolID",request.getParameter("RolID"));
-            request.setAttribute("TiendaID",request.getParameter("TiendaID"));
+            request.setAttribute("ID",request.getParameter("ID"));
             access=edit;
         }else if(action.equalsIgnoreCase("actualizar")){
             Id = Integer.parseInt(request.getParameter("xId"));
@@ -75,21 +79,17 @@ public class UsuarioRolController extends HttpServlet {
             int RoID = Integer.parseInt(request.getParameter("xRoID"));
             int TiendaD = Integer.parseInt(request.getParameter("xTiendaID"));
            // String MarcaID = request.getParameter("xMarcaID");
+            us.setID(Id);
             us.setUsuarioID(UsuarioID);
             us.setRolID(RoID);      
             us.setTiendaID(TiendaD);      
             dao.edit(us);
             access=list;
         }else if(action.equalsIgnoreCase("eliminar")){
-            Id = Integer.parseInt(request.getParameter("ProductoID"));
-            int UsuarioID = Integer.parseInt(request.getParameter("xUsuarioID"));
-            int RoID = Integer.parseInt(request.getParameter("xRoID"));
-            int TiendaD = Integer.parseInt(request.getParameter("xTiendaID"));
+            Id = Integer.parseInt(request.getParameter("ID"));
            // String MarcaID = request.getParameter("xMarcaID");
-            us.setUsuarioID(UsuarioID);
-            us.setRolID(RoID);      
-            us.setTiendaID(TiendaD);
-         //   dao.delete(Id);
+            us.setID(Id);
+            dao.delete(Id);
             access=list;
         }
                 

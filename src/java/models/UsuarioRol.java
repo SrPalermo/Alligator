@@ -14,14 +14,23 @@ public class UsuarioRol {
     int UsuarioID;
     int RolID;
     int TiendaID;
-
+    int ID;
     public UsuarioRol(){
     }
     
-    public UsuarioRol(int UsuarioID, int RolID, int TiendaID) {
+    public UsuarioRol(int UsuarioID, int RolID, int TiendaID, int ID) {
         this.UsuarioID = UsuarioID;
         this.RolID = RolID;
         this.TiendaID = TiendaID;
+        this.ID = ID;
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
+    }
+
+    public int getID() {
+        return ID;
     }
 
     public int getUsuarioID() {

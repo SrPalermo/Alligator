@@ -100,7 +100,22 @@ public class UsuarioController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String accion= request.getParameter("accion");
+        String usuario = request.getParameter("txtemail");
+        String password = request.getParameter("txtpass");     
+        if(accion.equals("Ingresar")){         
+           u=dao.validar(usuario, password);
+            System.out.println("EMAIL==========="+u.getEmail().toString());
+           if(u.getEmail()==usuario){
+               request.setAttribute("usuario", u);
+               request.getRequestDispatcher("home.jsp").forward(request, response);
+           }else{
+              request.getRequestDispatcher("TiendaController").forward(request, response); 
+           }
+           
+       }else{
+           request.getRequestDispatcher("RolesController").forward(request, response); 
+       }
     }
 
 

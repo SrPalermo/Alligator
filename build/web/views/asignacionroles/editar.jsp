@@ -4,6 +4,17 @@
     Author     : arodas
 --%>
 
+<%@page import="modelsDao.TiendaDao"%>
+<%@page import="models.Tienda"%>
+<%@page import="models.Rol"%>
+<%@page import="modelsDao.RolDao"%>
+<%@page import="java.util.Iterator"%>
+<%@page import="models.Usuario"%>
+<%@page import="models.UsuarioRol"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.List"%>
+<%@page import="modelsDao.UsuarioDao"%>
+<%@page import="modelsDao.UsuarioRolDao"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -63,7 +74,112 @@
         </nav>
 
         <!-- Finaliza el navbar -->
-        
+
+        <br/>
+
+        <div>
+
+
+            <div class="container">
+                <h1>Asignacion de Rol</h1>
+                <br/>
+                <%
+                        UsuarioRolDao dao = new UsuarioRolDao();
+                        int ProductoID = Integer.parseInt((String)request.getAttribute("ID"));
+                        UsuarioRol pr = (UsuarioRol)dao.list(ProductoID);
+                    %>
+                
+                
+                <form class="form-horizontal" widht="" heigth="" action="UsuarioRolController">
+
+                    <div class="form-group">
+                        <label class="control-label col-sm-2">Usuario</label>
+                        <input name="xId" type="hidden" value="<%= pr.getID()%>">
+                        <div class="col-sm-10">
+                            <select name="xUsuarioID" class="form-control">
+
+                                <%
+                                    UsuarioDao marcas = new UsuarioDao();
+                                    List<Usuario> list = marcas.listar();
+                                    Iterator<Usuario> iter = list.iterator();
+                                    Usuario marca = null;
+                                    while (iter.hasNext()) {
+                                        marca = iter.next();
+                                %>
+
+                                <option value="<%= marca.getUsuarioID()%>"><%= marca.getNombre()%> </option>
+
+                                <%}%>
+
+                            </select>
+                        </div>
+                                
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2">Rol</label>
+                        <div class="col-sm-10">
+                            <select name="xRoID" class="form-control">
+
+                                <%
+                                    RolDao roles = new RolDao();
+                                    List<Rol> rollist = roles.listar();
+                                    Iterator<Rol> roliter = rollist.iterator();
+                                    Rol role = null;
+                                    while (roliter.hasNext()) {
+                                        role = roliter.next();
+                                %>
+
+                                <option value="<%= role.getRolID()%>"><%= role.getDescripcion()%> </option>
+
+                                <%}%>
+
+                            </select>
+                        </div>
+                                
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2">Tienda</label>
+                        <div class="col-sm-10">
+                            <select name="xTiendaID" class="form-control">
+
+                                <%
+                                    TiendaDao x = new TiendaDao();
+                                    List<Tienda> tiendalist = x.listar();
+                                    Iterator<Tienda> tiendaiter = tiendalist.iterator();
+                                    Tienda tienda = null;
+                                    while (tiendaiter.hasNext()) {
+                                        tienda = tiendaiter.next();
+                                %>
+
+                                <option value="<%= tienda.getTiendaID() %>"><%= tienda.getNombre() %> </option>
+
+                                <%}%>
+
+                            </select>
+                        </div>
+                                
+                    </div>
+
+                    <div class="col-sm-4">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <button class="btn btn-lg btn-primary btn-block" name="accion" type="submit" value="actualizar" >Guardar</button> 
+                                    </td>
+                                    <td>
+                                        <a type="button" class="btn btn-lg btn-danger btn-block" href="UsuarioRolController?accion=listar">Cancelar</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+
+                </form>
+            </div>
+
+        </div>        
         
           <!-- JS here -->
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

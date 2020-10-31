@@ -68,9 +68,9 @@
         <br/>
 
         <div style="border: 1pt;" class="container-fluid">
-            <h1>Productos</h1>
+            <h1>Asigncion Roles</h1>
             <br/>
-            <a type="button" class="btn btn-primary" href="ProductoController?accion=crear">Nuevo Producto</a>
+            <a type="button" class="btn btn-primary" href="UsuarioRolController?accion=crear">Nueva Asignacion</a>
             <hr/>
         </div>
 
@@ -80,31 +80,32 @@
             <table class="table table-striped table-dark " border="1">
                 <thead>
                     <tr>
-                        <th>ID PRODUCTO</th>
-                        <th>DESCRIPCION</th>
-                        <th>MARCA ID</th>
-                        <th>ACTIVO</th>
+                        <th>ID</th>
+                        <th>ID USUARIO</th>
+                        <th>ID ROL</th>
+                        <th>ID TIENDA</th>
                         <th>ACCIONES</th>
                     </tr>
                 </thead>
 
                 <%
-                    UsuarioRolDao productos = new UsuarioRolDao();
-                    List<UsuarioRol> list = productos.listar();
+                    UsuarioRolDao us = new UsuarioRolDao();
+                    List<UsuarioRol> list = us.listar();
                     Iterator<UsuarioRol> iter = list.iterator();
-                    UsuarioRol producto = null;
+                    UsuarioRol u = null;
                     while (iter.hasNext()) {
-                        producto = iter.next();
+                        u = iter.next();
                 %>
 
                 <tbody>
                     <tr>
-                        <td><%= producto.getUsuarioID()%></td>
-                        <td><%= producto.getTiendaID()%></td>
-                        <td><%= producto.getRolID()%></td>
+                        <td><%= u.getID()%></td>
+                        <td><%= u.getUsuarioID()%></td>
+                        <td><%= u.getRolID()%></td>
+                        <td><%= u.getTiendaID()%></td>
                         <td>
-                            <a type="button" class="btn btn-info" href="UsuarioRolController?accion=editar&ProductoID=<%= producto.getUsuarioID() %>">Editar</a>
-                            <a type="button" class="btn btn-danger" href="UsuarioRolController?accion=eliminar&ProductoID=<%= producto.getUsuarioID() %>">Eliminar</a>
+                            <a type="button" class="btn btn-info" href="UsuarioRolController?accion=editar&ID=<%= u.getID() %>">Editar</a>
+                            <a type="button" class="btn btn-danger" href="UsuarioRolController?accion=eliminar&ID=<%= u.getID() %>">Eliminar</a>
                         </td>
                     </tr>
                 </tbody>

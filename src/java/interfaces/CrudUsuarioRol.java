@@ -8,14 +8,14 @@ package interfaces;
 import java.util.List;
 import models.UsuarioRol;
 
-/**
+/**ID
  *
  * @author lgomez
  */
 public interface CrudUsuarioRol {
     public List listar();
-    public UsuarioRol list(int TiendaID,int UsuarioID,int RolID);
-    public boolean add(UsuarioRol tienda);
-    public boolean edit(UsuarioRol tienda);
-    public boolean delete(int TiendaID,int UsuarioID,int RolID);
+    public UsuarioRol list(int ID);
+    public boolean add(UsuarioRol ID);
+    public boolean edit(UsuarioRol ID);
+    public boolean delete(int ID);
 }

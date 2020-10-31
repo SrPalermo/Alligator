@@ -135,5 +135,30 @@ public class UsuarioDao implements Crud{
         }
         return false;
     }
+
+    @Override
+    public Usuario validar(String Email, String Contrasea) {
+        //Usuario us = new Usuario();
+        String sql="SELECT *FROM USUARIOS where Email=? and Contrasea=?";
+        try {
+            con = cxn.getConnection();
+            ps=con.prepareStatement(sql);
+            ps.setString(1, Email);
+            ps.setString(2, Contrasea);
+            rs=ps.executeQuery();
+            while(rs.next()){
+                u.setUsuarioID(rs.getInt("UsuarioID"));
+                u.setNombre(rs.getString("Nombre"));
+                u.setApellido(rs.getString("Apellido"));
+                u.setUsuario(rs.getString("Usuario"));
+                u.setContrasea(rs.getString("Contrasea"));
+                u.setEmail(rs.getString("Email"));
+                u.setEstado(rs.getString("Estado"));
+            }
+        } catch (Exception e) {
+            u.setNombre(e.getMessage());
+        }
+        return u;
+    }
     
 }
